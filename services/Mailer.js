@@ -21,7 +21,7 @@ class Mailer extends helper.Mail {
   }
 
   formatAddresses(recipients){
-    return recipiets.map(({email}) => {
+    return recipients.map(({email}) => {
 
       return new helper.Email(email);
     });
@@ -29,7 +29,7 @@ class Mailer extends helper.Mail {
 
   addClickTracking(){
     const trackingSettings = new helper.TrackingSettings();
-    const clickTracking = new helper.clickTracking(true, true);
+    const clickTracking = new helper.ClickTracking(true, true);
     trackingSettings.setClickTracking(clickTracking);
     this.addTrackingSettings(trackingSettings);
   }
@@ -42,7 +42,7 @@ class Mailer extends helper.Mail {
     this.addPersonalization(personalize);
 
   }
-  
+
   async send(){
     const request = this.sgApi.emptyRequest({
       method:'POST',
